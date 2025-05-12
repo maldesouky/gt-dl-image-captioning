@@ -1,0 +1,6 @@
+conda create -n "cs7643-final-project-01" python=3.10
+conda activate cs7643-final-project-01
+conda install pytorch torchvision torchaudio torchtext pytorch-cuda=11.8 -c pytorch -c nvidia
+conda install nltk spacy
+conda install numpy tqdm pandas openpyxl jupyter jupyterlab python-dotenv matplotlib requests
+pip install tensorboard torch-tb-profiler

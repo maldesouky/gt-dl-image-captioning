@@ -1,0 +1,51 @@
+======================
+|  Flickr30k - LSTM  |
+======================
+
+class model_control:
+    encoded_image_size = 14                             # Encoder image output
+    attention_dim = 512                                 # Attention layer size
+    embed_dim = 300                                     # Embedding size (300 for GloVe, 256 for Stanford)
+    decoder_dim = 512                                   # Hidden layer size
+    encoder_dim = 2048                                  # DO NOT CHANGE THIS - Encoded image with attention size - leave this fixed at 2048. This is ResNet's output
+    dropout = 0.5                                       # Drop out ratio
+    min_word_freq = 5                                   # Min. word frequency to include in word map
+    max_gen_length = 30                                 # Maximum length for generating captions for test images
+    PAD_token = 0                                       # Padding token
+    SOS_token = 1                                       # Start of sentence token
+    EOS_token = 2                                       # End of sentence token
+    UNK_token = 3                                       # Unknown token
+    beam_size = 5                                       # Beam search, set to 0 or None to disable
+
+    # Pre-trained embeddings
+    # pretrained_embeddings_file = None                   # Use pre-trained embeddings?
+    pretrained_embeddings_file = \
+        './data/glove/glove.6B.300d.txt'                # Use pre-trained embeddings?
+    fine_tune_embeddings = True                         # Fine-tune embeddings? If use_pretrained_embeddings <> None, this must be True
+
+    # Transformer-specific parameters
+    num_heads = 8                                       # Number of attention heads
+    num_layers = 6                                      # Number of transformer layers
+    ff_dim = 2048                                       # Feed-forward network dimension
+    transformer_max_gen_length = max_gen_length         # Maximum sequence length for transformer
+    transformer_embed_dim = 128                         # Embed_dim % num_heads == 0
+    transformer_dropout = 0.1                           # Transformer drop-out ratio
+
+class train_control:
+    random_seed = 42                                    # Random seed
+    batch_size = 64                                     # Batch size
+    # num_workers = cpu_count()                           # Number of worker threads for DataLoader, set to #CPU cores
+    num_workers = 4                                     # Number of worker threads for DataLoader
+    learning_rate = 1e-4                                # Initial learning rate
+    min_learning_rate = 1e-6                            # Minimum learning rate
+    weight_decay = 1e-4                                 # Weight decay
+    momentum=0.9                                        # Momentum (for use with SGD with Momentum)
+    warmup_epochs = 3                                   # Number of warmup epochs
+    epochs = 40                                         # Number of epochs
+    steps = [3, 5]                                      # LR stepping control
+    save_best = True                                    # Save best model?
+    save_every = 1                                      # Save every n epochs - Set to None to disable
+    accumulation_steps = 1                              # Gradient accumulation steps (set to 1 to disable)
+    gradient_clip_norm = 5.0                            # clip gradients at an absolute value of
+    early_stopping_patience = 10                        # Early stopping patience
+    alpha_c = 1.0                                       # Doubly stochastic attention regularization

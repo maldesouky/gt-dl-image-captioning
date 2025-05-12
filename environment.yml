@@ -1,0 +1,36 @@
+name: cs7643-final_project
+channels:
+  - conda-forge
+  - nvidia
+  - pytorch
+  - defaults
+dependencies:
+  - python=3.10
+  - pytorch
+  - torchvision
+  - torchaudio
+  - torchtext
+  - pytorch-cuda=11.8
+  - matplotlib
+  - tqdm
+  - jupyter
+  - jupyterlab
+  - Cython
+  - cudatoolkit
+  - nltk
+  - notebook
+  - spacy
+  - scikit-learn
+  - pandas
+  - pycocotools
+  - python-dotenv
+  - numpy=1.26.4
+  - onnx
+  - onnxruntime
+  - openpyxl
+  - requests
+  - tensorboard
+  - pip:
+      - onnxscript
+      - fiftyone
+      - torch-tb-profiler
